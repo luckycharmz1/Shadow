@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+    CHarmaine Washington, Lab9C, GDS089, Javascript
+    -->
+    <meta charset='utf-8' />
+    <meta name="viewport" content="width=device-width" /> 
+    <title>Charmaine's Dog Slideshow</title>
+    <style>
+    /* styles go here */
+    body {text-align: center; font-size: 25px;}
+
+    img {width: 600px; height: 600px; object-fit: cover;  padding: 10px; box-shadow: 5px 10px 8px 10px #888888;}
+
+    </style>
+</head>
+
+<body>
+    <h1>My Dog Slideshow</h1>
+    <!-- page content will go here -->
+    <img src="images/puppy.jpg" alt="Pup" id="image" />
+    <p id="caption">Shadow</p>
+
+    <script>
+    // scripts will go here
+    var dogs = [
+
+    {
+        file: "puppy.jpg",
+        caption: "Puppy",
+    },
+
+    {
+        file: "carride.jpg",
+        caption: "Car Ride",
+    },
+
+    {
+        file: "shower1.jpg",
+        caption: "Shower",
+    },
+
+    {
+        file: "shower2.jpg",
+        caption: "Shower",
+    },
+
+    {
+        file: "trouble.jpg",
+        caption: "Trouble",
+    },
+
+    {
+        file: "costumes.jpg",
+        caption: "Costumes",
+    },
+
+    {
+        file: "Shadow.jpg",
+        caption: "Shadow",
+    },
+];
+
+var currentImage = 0;
+var imageCache = [ ];
+preloadImages();
+var timer = setInterval(nextImage, 2000);
+
+function preloadImages() {
+    var image;
+    for (var i=0; i<dogs.length; i++) {
+        image = new Image();
+        image.src = "images/" + dogs[i].file;
+        image.alt = dogs[i].caption;
+        image.caption = dogs[i].caption;
+        imageCache.push (image);
+    }
+}
+
+function nextImage() {
+    currentImage = (currentImage + 1) % imageCache.length;
+    showCurrentImage();
+}
+
+function showCurrentImage() {
+    var dog = imageCache[currentImage];
+    document.getElementById('image').src = dog.src;
+    document.getElementById('image').alt = dog.alt;
+    document.getElementById('caption').textContent = dog.caption;
+}
+    </script>
+</body>
+</html>
